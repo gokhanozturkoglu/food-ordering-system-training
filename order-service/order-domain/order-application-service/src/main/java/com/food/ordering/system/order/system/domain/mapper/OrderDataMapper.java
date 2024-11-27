@@ -8,6 +8,7 @@ import com.food.ordering.system.order.system.domain.dto.create.CreateOrderComman
 import com.food.ordering.system.order.system.domain.dto.create.CreateOrderResponse;
 import com.food.ordering.system.order.system.domain.dto.create.OrderAddress;
 import com.food.ordering.system.order.system.domain.dto.create.OrderItem;
+import com.food.ordering.system.order.system.domain.dto.track.TrackOrderResponse;
 import com.food.ordering.system.valueobject.CustomerId;
 import com.food.ordering.system.valueobject.Money;
 import com.food.ordering.system.valueobject.ProductId;
@@ -54,10 +55,18 @@ public class OrderDataMapper {
         return new StreetAddress(UUID.randomUUID(),address.getStreet(), address.getPostalCode(), address.getCity());
     }
 
-    public CreateOrderResponse orderToCreateOrderResponse(Order order) {
+    public CreateOrderResponse orderToCreateOrderResponse(Order order, String message) {
         return CreateOrderResponse.builder()
                 .orderTrackingId(order.getTrackingId().getValue())
                 .orderStatus(order.getOrderStatus())
+                .build();
+    }
+
+    public TrackOrderResponse orderToTrackOrderResponse(Order order) {
+        return TrackOrderResponse.builder()
+                .orderTrackingId(order.getTrackingId().getValue())
+                .orderStatus(order.getOrderStatus())
+                .failureMessages(order.getFailureMessages())
                 .build();
     }
 }
