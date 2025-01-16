@@ -2,7 +2,7 @@ package com.food.ordering.system.order.system.domain.ports.input.message.listene
 
 import com.food.ordering.system.order.system.domain.dto.messages.PaymentResponse;
 
-public interface PaymentResponseMessagesListener {
+public interface PaymentResponseMessageListener {
 
     void paymentCompleted(PaymentResponse paymentResponse);
 
